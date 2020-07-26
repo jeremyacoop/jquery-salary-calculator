@@ -6,20 +6,24 @@ function handleReady() {
     console.log('jQuery is ready');
     // test submit button
     $('#employeeSubmit').on('click', function(){console.log('click')});
-    $('#employeeSubmit').on('click', getEmployeeInfo());
+    $('#employeeSubmit').on('click', getEmployeeInfo);
     }
 
     employeeArray = [];
     function getEmployeeInfo(){
         // verify input data
-        if($('#firstName') === ""){
+        if($('#firstName').val() === ""){
             alert('First name is required');
-        }else if($('#lastName') === ""){
+        }else if($('#lastName').val() === ""){
             alert('Last name is required');
-        }else if($('#idNumber') === ""){
+        }else if($('#idNumber').val() === ""){
             alert('ID is required');
-        }else if($('annualSalary').val() === NaN){
-            alert('Salary must be a number')
+        }else if($('#jobTitle').val() === ""){
+            alert('Job title is required');
+        }else if($('#annualSalary').val() === ""){
+            alert('Annual salary is required');
+        }else if($('#annualSalary').val() == NaN){
+            alert('Salary must be a number');
         }
         // collect and store inputs
         let fn = $('#firstName').val();
@@ -37,9 +41,9 @@ function handleReady() {
             Salary: as
         }
         employeeArray.push(employeeObject);
-        // console.log(empObject);
-        // console.log(empArray);
-        calculateMonthlyCosts();
+        console.log(employeeObject);
+        console.log(employeeArray);
+        calculateMonthlyCosts(employeeArray);
     }
 
     function calculateMonthlyCosts(employees){
