@@ -38,20 +38,32 @@ function handleReady() {
             nameTwo: ln,
             ID: id,
             job: jt,
-            Salary: as
+            salary: parseInt(as)
         }
         employeeArray.push(employeeObject);
         console.log(employeeObject);
         console.log(employeeArray);
-        calculateMonthlyCosts(employeeArray);
+        // calculateMonthlyCosts(employeeArray);
+        printEmployees();
     }
 
     function calculateMonthlyCosts(employees){
         let employeeCosts = 0;
         for(i=0; i<employeeArray.length; i++){
-            employeeCosts += employees[i].as;
+            employeeCosts += employees[i].salary;
         }
         console.log(employeeCosts);
-        monthlyCosts = employees/12;
-        console.log(employees)
+        monthlyCosts = employeeCosts/12;
+        console.log(employees);
+        console.log(monthlyCosts);
+        return monthlyCosts;
+    }
+    function printEmployees(){  
+        for(i=0; i<employeeArray.length; i++){
+            for(j in employeeArray[i]){
+                $('#employeeInfo').append(employeeArray[i][j]);
+           }
+        $('#employeeInfo').append(`<br>`);
+        }
+        $('#tableContainer').append(`Total monthly cost:  ${calculateMonthlyCosts(employeeArray)}`)
     }
